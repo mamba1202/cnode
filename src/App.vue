@@ -15,7 +15,8 @@ export default {
   name: "App",
   components: {
     Header,
-    PostList
+    PostList,
+   
   }
 }
 </script>

@@ -2,9 +2,7 @@
   <div class="PostList">
     <!--在数据未返回时，显示这个正在加载的gif-->
     <div
-      class="loading"
-      v-if="isLoading.gif"
-    >
+      class="loading" v-if="isLoading.gif">
       <!--加载动画-->
       <img src="../assets/loading.gif">
     </div>
