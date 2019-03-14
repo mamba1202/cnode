@@ -2,7 +2,9 @@
   <div class="PostList">
     <!--在数据未返回时，显示这个正在加载的gif-->
     <div
-      class="loading" v-if="isLoading.gif">
+      class="loading"
+      v-if="isLoading.gif"
+    >
       <!--加载动画-->
       <img src="../assets/loading.gif">
     </div>
@@ -55,25 +57,36 @@
             {{post.last_reply_at | formatDate}}
           </span>
         </li>
+        <li>
+          <!--分页-->
+          <pagination @handleList="renderList"></pagination>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import pagination from "./Pagination";
 export default {
   name: "PostList",
   data() {
     return {
       isLoading: false,
-      posts: [] //代表页面列表数组
+      posts: [], //代表页面列表数组
+      postpage: 1
     };
+  },
+  components: {
+    pagination
   },
   methods: {
     getData: function() {
       this.$http.get("https://cnodejs.org/api/v1/topics", {
-          page: 1,
-          limit: 20
+          params: { //get请求要用params
+            page: this.postpage,
+            limit: 20
+          }
         })
         .then(res => {
           (this.isLoading = false), //加载成功之后去除动画
@@ -83,10 +96,14 @@ export default {
           //处理返回失败后的问题
           console.log(err);
         });
+    },
+    renderList(value) {
+      this.postpage = value;
+      this.getData()
     }
   },
   beforeMount() {
-      this.isLoading = true, //加载成功之前显示加载动画
+    (this.isLoading = true), //加载成功之前显示加载动画
       this.getData(); //在页面加载之前获取数据
   }
 };
