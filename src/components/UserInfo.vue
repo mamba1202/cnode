@@ -13,7 +13,7 @@
       v-else
     >
       <section>
-        <img src="userinfo.avatar_url">
+        <img :src="userinfo.avatar_url">
         <!--src动态绑定-->
         <span>{{userinfo.loginname}}</span>
         <p>
@@ -79,7 +79,7 @@ export default {
         .catch(function(err) {
           //处理返回失败后的问题
           console.log(err);
-        });
+        })
     }
   },
   beforeMount() {

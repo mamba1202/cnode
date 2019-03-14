@@ -81,6 +81,12 @@ export default {
   beforeMount() {
     this.isLoading = true;
     this.getArticleData();
+  },
+  //检测路由变化
+  watch:{
+      '$route'(to,from){ //从哪里来到哪里去 
+        this.getArticleData() // 如果监测到路由发生变化就执行这个函数
+      } 
   }
 };
 </script>
