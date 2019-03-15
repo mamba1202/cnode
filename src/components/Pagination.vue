@@ -6,8 +6,7 @@
   <button
       v-for="btn in pagebtns"
       @click="changeBtn(btn)"
-      :class="[{currentPage:btn == currentPage},'pagebtn']"
-    >
+      :class="[{currentPage:btn == currentPage},'pagebtn']">
       <!--第一个currentPage是类名，第二个是data中定义的----pagebtn为默认class-->
       {{btn}}
       <!--当前btn==currentPage时class生效-->

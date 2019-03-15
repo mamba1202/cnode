@@ -103,7 +103,7 @@ export default {
     }
   },
   beforeMount() {
-    (this.isLoading = true), //加载成功之前显示加载动画
+    this.isLoading = true, //加载成功之前显示加载动画
       this.getData(); //在页面加载之前获取数据
   }
 };
