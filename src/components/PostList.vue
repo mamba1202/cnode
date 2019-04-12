@@ -14,7 +14,7 @@
         <li>
           <div class="toobar">
             <span>全部</span>
-            <span>精华</span>
+            <span @click="alert">精华</span>
             <span>分享</span>
             <span>问答</span>
             <span>招聘</span>
@@ -101,6 +101,9 @@ export default {
       this.postpage = value;
       this.getData()
     }
+  },
+  alert(){
+alert(`由于该页面与'全部页面一致，暂时未做'`)
   },
   beforeMount() {
     this.isLoading = true, //加载成功之前显示加载动画

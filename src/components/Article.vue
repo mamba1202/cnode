@@ -159,7 +159,6 @@ export default {
 }
 
 .topic_header li {
-  display: inline-block;
   font-size: 12px;
   color: #838383;
 }
