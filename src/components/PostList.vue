@@ -15,9 +15,9 @@
           <div class="toobar">
             <span>全部</span>
             <span @click="alert">精华</span>
-            <span>分享</span>
-            <span>问答</span>
-            <span>招聘</span>
+            <span @click="alert">分享</span>
+            <span @click="alert">问答</span>
+            <span @click="alert">招聘</span>
           </div>
         </li>
         <li v-for="post in posts">
@@ -29,9 +29,10 @@
           >
           <!--动态绑定-->
           <!--回复/浏览-->
-          <span>
+          <span class='reply '>
             <span class="reply_count">{{post.reply_count}}</span>
-            /{{post.visit_count}}
+            <span>/</span>
+            <span class="count_of_visits">{{post.visit_count}}</span> 
           </span>
           <!--帖子的分类-->
           <span :class="[{put_good:(post.good ==true),put_top:(post.top == true),
@@ -82,8 +83,10 @@ export default {
   },
   methods: {
     getData: function() {
-      this.$http.get("https://cnodejs.org/api/v1/topics", {
-          params: { //get请求要用params
+      this.$http
+        .get("https://cnodejs.org/api/v1/topics", {
+          params: {
+            //get请求要用params
             page: this.postpage,
             limit: 20
           }
@@ -99,14 +102,14 @@ export default {
     },
     renderList(value) {
       this.postpage = value;
-      this.getData()
+      this.getData();
+    },
+    alert() {
+      alert(`由于该页面与 '全部' 页面一致，暂时未做`);
     }
   },
-  alert(){
-alert(`由于该页面与'全部页面一致，暂时未做'`)
-  },
   beforeMount() {
-    this.isLoading = true, //加载成功之前显示加载动画
+    (this.isLoading = true), //加载成功之前显示加载动画
       this.getData(); //在页面加载之前获取数据
   }
 };
@@ -155,19 +158,28 @@ li:last-child:hover {
 li span {
   line-height: 30px;
 }
-
+li span:first-child {
+  width: 70px;
+}
 .allcount {
   width: 70px;
   display: inline-block;
   text-align: center;
   font-size: 12px;
 }
-
+.reply {
+  width: 70px;
+  display: inline-block;
+  text-align: center;
+}
 .reply_count {
   color: #9e78c0;
   font-size: 14px;
 }
-
+.count_of_visits{
+  font-size: 10px;
+  color: rgb(180,180,180)
+}
 .put_good,
 .put_top {
   background: #80bd01;

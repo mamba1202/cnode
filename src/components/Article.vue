@@ -1,56 +1,71 @@
 <template>
- <div class="article">
-<!--如果正在加载显示此div-->
-  <div class="loading" v-if="isLoading">
-    <img src="../assets/loading.gif" >
-  </div>
-  <div c v-else>
-    <div class="topic_header">
-      <div class="topic_title">{{post.title}}</div>
-      <ul>
-        <li>•发布于：{{post.create_at | formatDate}}</li>
-        <li>• 作者：
-        {{post.author.loginname}}
-        </li>
-        <li>• {{post.visit_count}}次浏览</li>
-        <li>•来自{{post | tabFormatter}}</li>
-      </ul>
-      <div v-html="post.content" class="topic_content"></div>
+  <div class="article">
+    <!--如果正在加载显示此div-->
+    <div
+      class="loading"
+      v-if="isLoading"
+    >
+      <img src="../assets/loading.gif">
     </div>
-    <div id="reply">
-      <div class="topbar">回复</div>
-      <div v-for="(reply,index)  in post.replies" class="replySec">
-        <div class="replyUp">
-          <router-link :to="{
+    <div
+      c
+      v-else
+    >
+      <div class="topic_header">
+        <div class="topic_title">{{post.title}}</div>
+        <ul>
+          <li>•发布于：{{post.create_at | formatDate}}</li>
+          <li>• 作者：
+            {{post.author.loginname}}
+          </li>
+          <li>• {{post.visit_count}}次浏览</li>
+          <li>•来自{{post | tabFormatter}}</li>
+        </ul>
+        <div
+          v-html="post.content"
+          class="topic_content"
+        ></div>
+      </div>
+      <div id="reply">
+        <div class="topbar">回复</div>
+        <div
+          v-for="(reply,index)  in post.replies"
+          class="replySec"
+        >
+          <div class="replyUp">
+            <router-link :to="{
           name:'user_info',
           params:{
             name:reply.author.loginname
           }
           }">
-            <img :src="reply.author.avatar_url" alt="">
-          </router-link>
-          <router-link :to="{
+              <img
+                :src="reply.author.avatar_url"
+                alt=""
+              >
+            </router-link>
+            <router-link :to="{
           name:'user_info',
           params:{
             name:reply.author.loginname
           }
           }">
-            <span>{{reply.author.loginname}}</span>
-          </router-link>
-          <span>
-          {{index+1}}楼
-        </span>
-          <span v-if="reply.ups.length>0" >
-          ☝ {{reply.ups.length}}
-        </span>
-          <span v-else>
-        </span>
+              <span>{{reply.author.loginname}}</span>
+            </router-link>
+            <span>
+              {{index+1}}楼
+            </span>
+            <span v-if="reply.ups.length>0">
+              ☝ {{reply.ups.length}}
+            </span>
+            <span v-else>
+            </span>
+          </div>
+          <p v-html="reply.content"></p>
         </div>
-      <p v-html="reply.content"></p>
       </div>
     </div>
   </div>
-</div>
 </template>
 <script>
 export default {
@@ -59,7 +74,7 @@ export default {
     return {
       isLoading: false, //是否正在加载
       post: {} //代表当前文章页的所有内容和所有属性
-    }
+    };
   },
   methods: {
     getArticleData() {
@@ -83,15 +98,19 @@ export default {
     this.getArticleData();
   },
   //检测路由变化
-  watch:{
-      '$route'(to,from){ //从哪里来到哪里去 
-        this.getArticleData() // 如果监测到路由发生变化就执行这个函数
-      } 
+  watch: {
+    $route(to, from) {
+      //从哪里来到哪里去
+      this.getArticleData(); // 如果监测到路由发生变化就执行这个函数
+    }
   }
 };
 </script>
 <style>
 @import url("../assets/markdown-github.css");
+body{
+  background-color: rgb(225,225,225)
+}
 .topbar {
   padding: 10px;
   background-color: #f6f6f6;
@@ -99,7 +118,10 @@ export default {
   font-size: 12px;
   margin-top: 10px;
 }
-
+.article{
+  background-color:rgb(255,255,255);
+  margin-left: -70px;
+}
 .article:not(:first-child) {
   margin-right: 340px;
   margin-top: 15px;
@@ -143,7 +165,8 @@ export default {
 }
 
 .topic_header {
-  padding: 10px;
+  padding: 10px 30px;
+
 }
 
 .topic_title {
@@ -159,7 +182,6 @@ export default {
 }
 
 .topic_header li {
-  font-size: 12px;
   color: #838383;
 }
 
@@ -167,7 +189,21 @@ export default {
   border-top: 1px solid #e5e5e5;
   padding: 0 10px;
 }
-
+.topic_content ul {
+  text-decoration: circle;
+}
+.topic_content li {
+  font-size: 14px;
+  line-height: 2em;
+  list-style-type: disc;
+}
+.topic_content li a {
+  color: rgb(9, 147, 172);
+}
+.topic_content li > ul > li{
+   margin-left: 20px;
+    list-style-type: circle;
+}
 .markdown-text img {
   width: 92% !important;
 }
