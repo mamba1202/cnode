@@ -14,7 +14,7 @@
     <div class="recent_topics">
       <div class="topbar">作者最近主题</div>
       <ul>
-        <li v-for="list in topcilimitby5">
+        <li v-for="list in topcilimitby5" class="bar">
           <router-link :to="{   //动态绑定
             name:'post_content',
             params:{
@@ -101,9 +101,7 @@ export default {
   float: right;
   margin-top: 0;
 }
-li {
-  padding: 3px 0;
-}
+
 .recent_replies ul,
 .recent_topics ul {
   margin-top: 0px;
@@ -117,13 +115,20 @@ ul a {
   text-decoration: none;
   color: #778087;
 }
-
+li {
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  height: 30px;
+  line-height: 30px;
+  word-wrap: break-word;
+  }
 .topbar {
   padding: 10px;
   background-color: #f6f6f6;
   height: 16px;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 10px;
+  color: #333;
 }
 
 img {

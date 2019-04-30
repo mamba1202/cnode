@@ -1,15 +1,13 @@
 <template>
   <div class="PostList">
-    <!--在数据未返回时，显示这个正在加载的gif-->
-    <div
-      class="loading"
-      v-if="isLoading.gif"
-    >
+   
+    <!--代表主题帖子列表-->
+    <div class="post">
+       <!--在数据未返回时，显示这个正在加载的gif-->
+    <div class="loading" v-if="isLoading" >
       <!--加载动画-->
       <img src="../assets/loading.gif">
     </div>
-    <!--代表主题帖子列表-->
-    <div class="post">
       <ul>
         <li>
           <div class="toobar">
@@ -115,7 +113,7 @@ export default {
     }
   },
   beforeMount() {
-    (this.isLoading = true), //加载成功之前显示加载动画
+    this.isLoading = true, //加载成功之前显示加载动画
       this.getData(); //在页面加载之前获取数据
   }
 };
@@ -131,6 +129,7 @@ export default {
 }
 .posts {
   margin-top: 10px;
+   height: 100vh;
 }
 
 .PostList img {
