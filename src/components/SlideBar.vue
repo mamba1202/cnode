@@ -101,27 +101,26 @@ export default {
   float: right;
   margin-top: 0;
 }
-
 .recent_replies ul,
 .recent_topics ul {
   margin-top: 0px;
   margin-bottom: 0px;
   list-style: none;
-  padding-left: 14px;
+  padding: 0;
 }
 
 ul a {
   font-size: 12px;
   text-decoration: none;
   color: #778087;
+  display:block; 
+  white-space:normal; 
+  font-size: 13px;
 }
 li {
-  padding: 3px 0;
+  padding: 10px;
   border-bottom: 1px solid rgba(160, 160, 160, 0.2);
-  height: 30px;
-  line-height: 30px;
-  word-wrap: break-word;
-  }
+}
 .topbar {
   padding: 10px;
   background-color: #f6f6f6;

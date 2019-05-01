@@ -8,8 +8,8 @@
       <!--加载动画-->
       <img src="../assets/loading.gif">
     </div>
-      <ul>
-        <li>
+    <ul>
+       <li>
           <div class="toobar">
             <span @click="changeTab('')" :class="{active:tabString===''}">全部</span>
             <span @click="changeTab('good')" :class="{active:tabString==='good'}">精华</span>
@@ -18,6 +18,9 @@
             <span @click="changeTab('job')" :class="{active:tabString==='job'}">招聘</span>
           </div>
         </li>
+    </ul>
+    <div></div>
+      <ul class="articles-lists">
         <li v-for="post in posts">
           <!--:key="post.posts"-->
           <!--头像-->
@@ -127,11 +130,10 @@ export default {
 .PostList {
   background-color: #e1e1e1;
 }
-.posts {
+.post {
   margin-top: 10px;
-   height: 100vh;
+  height: 100vh;
 }
-
 .PostList img {
   height: 30px;
   width: 30px;
@@ -145,8 +147,8 @@ ul {
   margin: 0 auto;
 }
 
-ul li:not(:first-child) {
-  padding: 9px;
+ul li{
+  padding: 9px 15px;
   font-size: 15px;
   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma,
     "Hiragino Sans GB", STHeiti, sans-serif !important;
@@ -155,8 +157,7 @@ ul li:not(:first-child) {
   color: #333;
   border-top: 1px solid #f0f0f0;
 }
-
-li:not(:first-child):hover {
+li {
   background: #f5f5f5;
 }
 
@@ -270,6 +271,7 @@ li span {
   color: #fff;
   padding: 1px 4px;
   border-radius: 3px;
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 a {
   text-decoration: none;

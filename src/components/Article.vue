@@ -14,7 +14,7 @@
           :class="[{put_good:(post.good ==true),put_top:(post.top == true),put_tab:(post.tab == 'ask'),
            'topiclist-tab':(post.good !=true && post.top !=true &&post.tab != 'ask')}]"
         >
-          <span>
+          <span class="classif">
             {{post | tabFormatter}}
           </span>
         </span>
@@ -172,7 +172,7 @@ body {
 .topbar {
   padding: 10px;
   background-color: #f6f6f6;
-  height: 16px;
+  height: 36px;
   font-size: 12px;
   margin-top: 10px;
 }
@@ -184,7 +184,6 @@ body {
   margin-right: 340px;
   margin-top: 15px;
 }
-
 #reply,
 .topic_header {
   background-color: #fff;
@@ -195,7 +194,7 @@ body {
   margin-bottom: 40px;
 }
 
-#reply img {
+.replyUp img {
   width: 30px;
   height: 30px;
   position: relative;
@@ -211,12 +210,12 @@ body {
   text-decoration: none;
 }
 .name{
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .floor {
   color: #08c;
   font-size: 12px;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 .time {
   color: #08c;
@@ -291,7 +290,7 @@ body {
   border: 0;
   outline: 0;
   font-size: 100%;
-  margin-left: 40px;
+  margin-left: 50px;
   background: 0 0;
   color: #333;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
