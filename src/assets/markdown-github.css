@@ -327,13 +327,6 @@
     display: table;
     content: "";
   }
-  
-  .markdown-body::after {
-    display: table;
-    clear: both;
-    content: "";
-  }
-  
   .markdown-body>*:first-child {
     margin-top: 0 !important;
   }
