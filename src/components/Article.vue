@@ -12,7 +12,8 @@
         class="top"
         v-show="isScrollTop"
         @click="scrollToTop"
-      >
+      > 
+       <img src="../assets/up.png" alt="图片">
         <p>顶部</p>
       </div>
       <div class="topic_header">
@@ -152,8 +153,6 @@ export default {
               window.pageYOffset = $this.scrollTop - 30;
             } else if (document.body.scrollTop > 0) {
               document.body.scrollTop = $this.scrollTop - 30;
-            } else if (document.querySelector($this.el).scrollTop) {
-              document.querySelector($this.el).scrollTop = $this.scrollTop - 30;
             }
             animation();
           }, 1);
@@ -191,7 +190,15 @@ body {
 .top p {
   text-align: center;
   line-height: 20px;
-  color: white;
+  color: black;
+}
+.top img{
+  width: 40px;
+  height: 40px;
+  position:absolute;
+  right: 5px;
+  top: -6px;
+  color: red;
 }
 .put_good {
   width: 28px;
