@@ -294,6 +294,8 @@ body {
 }
 .name {
   margin-left: 20px;
+  display: inline-block;
+  width: 70px;
 }
 .floor {
   color: #08c;
@@ -389,9 +391,6 @@ p {
 }
 .markdown-text {
   vertical-align: baseline;
-}
-.markdown-text img {
-  width: 92% !important;
 }
 .markdown-body {
   margin-top: 10px;
