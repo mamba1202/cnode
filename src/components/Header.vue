@@ -22,7 +22,7 @@ export default {
 </script>
 <style scoped>
 .header{
-    background-color: #5a5555;
+    background-color: rgb(50, 64, 87);
     height: 50px;
 }
 img{
