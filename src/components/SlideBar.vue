@@ -30,7 +30,7 @@
     <div class="recent_replies">
       <div class="topbar">作者最近回复</div>
       <ul>
-        <li v-for="list in replylimitby5">
+        <li v-for="list in replylimitby5"  class="bar">
           <router-link :to="{   //动态绑定
             name:'post_content',
             params:{
@@ -112,7 +112,7 @@ export default {
 ul a {
   font-size: 12px;
   text-decoration: none;
-  color: #778087;
+  color: rgb(0,0,0);
   display:block; 
   white-space:normal; 
   font-size: 13px;
@@ -152,6 +152,9 @@ img {
 
 .authersummay .topbar {
   margin-top: 0px;
+}
+.bar:hover{
+  background-color: rgb(209, 233, 242);
 }
 </style>
 
