@@ -1,25 +1,43 @@
 <template>
   <div class="PostList">
-   
+
     <!--代表主题帖子列表-->
     <div class="post">
-       <!--在数据未返回时，显示这个正在加载的gif-->
-    <div class="loading" v-if="isLoading" >
-      <!--加载动画-->
-      <img src="../assets/loading.gif">
-    </div>
-    <ul>
-       <li>
+      <!--在数据未返回时，显示这个正在加载的gif-->
+      <div
+        class="loading"
+        v-if="isLoading"
+      >
+        <!--加载动画-->
+        <img src="../assets/loading.gif">
+      </div>
+      <ul>
+        <li>
           <div class="toobar">
-            <span @click="changeTab('')" :class="{active:tabString===''}">全部</span>
-            <span @click="changeTab('good')" :class="{active:tabString==='good'}">精华</span>
-            <span @click="changeTab('share')" :class="{active:tabString==='share'}">分享</span>
-            <span @click="changeTab('ask')" :class="{active:tabString==='ask'}">问答</span>
-            <span @click="changeTab('job')" :class="{active:tabString==='job'}">招聘</span>
+            <span
+              @click="changeTab('')"
+              :class="{active:tabString===''}"
+            >全部</span>
+            <span
+              @click="changeTab('good')"
+              :class="{active:tabString==='good'}"
+            >精华</span>
+            <span
+              @click="changeTab('share')"
+              :class="{active:tabString==='share'}"
+            >分享</span>
+            <span
+              @click="changeTab('ask')"
+              :class="{active:tabString==='ask'}"
+            >问答</span>
+            <span
+              @click="changeTab('job')"
+              :class="{active:tabString==='job'}"
+            >招聘</span>
           </div>
         </li>
-    </ul>
-    <div></div>
+      </ul>
+      <div></div>
       <ul class="articles-lists">
         <li v-for="post in posts">
           <!--:key="post.posts"-->
@@ -98,8 +116,8 @@ export default {
           }
         })
         .then(res => {
-          (this.isLoading = false), //加载成功之后去除动画
-            (this.posts = res.data.data);
+          this.isLoading = false, //加载成功之后去除动画
+          this.posts = res.data.data;
         })
         .catch(function(err) {
           //处理返回失败后的问题
@@ -116,7 +134,7 @@ export default {
     }
   },
   beforeMount() {
-    this.isLoading = true, //加载成功之前显示加载动画
+    (this.isLoading = true), //加载成功之前显示加载动画
       this.getData(); //在页面加载之前获取数据
   }
 };
@@ -147,7 +165,7 @@ ul {
   margin: 0 auto;
 }
 
-ul li{
+ul li {
   padding: 9px 15px;
   font-size: 15px;
   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma,
