@@ -8,6 +8,13 @@
       <img src="../assets/loading.gif">
     </div>
     <div v-else>
+      <div
+        class="top"
+        v-show="isScrollTop"
+        @click="scrollToTop"
+      >
+        <p>顶部</p>
+      </div>
       <div class="topic_header">
         <span
           class="all"
@@ -26,12 +33,16 @@
           <li>• {{post.visit_count}}次浏览</li>
           <li>• 来自{{post | tabFormatter}}</li>
         </ul>
-        <main class="markdown-body topic_content"
+        <main
+          class="markdown-body topic_content"
           v-html="post.content"
         ></main>
-        
+
       </div>
-      <div id="reply"   class="markdown-body">
+      <div
+        id="reply"
+        class="markdown-body"
+      >
         <div class="topbar">回复</div>
         <div
           v-for="(reply,index)  in post.replies"
@@ -61,13 +72,19 @@
               {{index+1}}楼
             </span>
             <span class="time">发布于: {{post.create_at | formatDate}}</span>
-            <span class="like" v-if="reply.ups.length>0">
+            <span
+              class="like"
+              v-if="reply.ups.length>0"
+            >
               ☝ {{reply.ups.length}}
             </span>
             <span v-else>
             </span>
           </div>
-          <p v-html="reply.content" class="content"></p>
+          <p
+            v-html="reply.content"
+            class="content"
+          ></p>
         </div>
       </div>
     </div>
@@ -79,8 +96,30 @@ export default {
   data() {
     return {
       isLoading: false, //是否正在加载
-      post: {} //代表当前文章页的所有内容和所有属性
+      post: {}, //代表当前文章页的所有内容和所有属性
+      scrollTop: null,
+      isScrollTop: false
     };
+  },
+  mounted() {
+    //window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener(
+      "scroll",
+      () => {
+        this.scrollTop =
+          document.documentElement.scrollTop ||
+          window.pageYOffset ||
+          document.body.scrollTop;
+
+        // 控制滚动按钮的隐藏或显示
+        if (this.scrollTop > 550) {
+          this.isScrollTop = true;
+        } else {
+          this.isScrollTop = false;
+        }
+      },
+      true
+    );
   },
   methods: {
     getArticleData() {
@@ -97,6 +136,29 @@ export default {
         .catch(function(err) {
           console.log(err);
         });
+    },
+    scrollToTop() {
+      let $this = this;
+      // 返回顶部动画特效
+      setTimeout(function animation() {
+        if ($this.scrollTop > 0) {
+          setTimeout(() => {
+            // 步进速度
+            $this.scrollTop = $this.scrollTop - 30;
+            // 返回顶部
+            if (document.documentElement.scrollTop > 0) {
+              document.documentElement.scrollTop = $this.scrollTop - 30;
+            } else if (window.pageYOffset > 0) {
+              window.pageYOffset = $this.scrollTop - 30;
+            } else if (document.body.scrollTop > 0) {
+              document.body.scrollTop = $this.scrollTop - 30;
+            } else if (document.querySelector($this.el).scrollTop) {
+              document.querySelector($this.el).scrollTop = $this.scrollTop - 30;
+            }
+            animation();
+          }, 1);
+        }
+      }, 1);
     }
   },
   beforeMount() {
@@ -116,6 +178,20 @@ export default {
 @import url("../assets/markdown-github.css");
 body {
   background-color: rgb(225, 225, 225);
+}
+.top {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgb(9, 147, 172);
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+}
+.top p {
+  text-align: center;
+  line-height: 20px;
+  color: white;
 }
 .put_good {
   width: 28px;
@@ -200,7 +276,7 @@ body {
   position: relative;
   bottom: -9px;
 }
-.replyUp{
+.replyUp {
   margin-bottom: 15px;
 }
 .replyUp a,
@@ -209,7 +285,7 @@ body {
   color: #666;
   text-decoration: none;
 }
-.name{
+.name {
   margin-left: 20px;
 }
 .floor {
@@ -222,12 +298,12 @@ body {
   font-size: 12px;
   margin-left: 10px;
 }
-.replySec{
+.replySec {
   border-bottom: 1px solid #e5e5e5;
   padding: 0 20px;
   margin: 10px 0;
 }
-.like{
+.like {
   float: right;
 }
 .loading {
@@ -293,7 +369,8 @@ body {
   margin-left: 50px;
   background: 0 0;
   color: #333;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 p {
   display: block;
@@ -303,9 +380,8 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
-.markdown-text{
+.markdown-text {
   vertical-align: baseline;
-  
 }
 .markdown-text img {
   width: 92% !important;
@@ -315,8 +391,8 @@ p {
   padding-top: 10px;
   padding-bottom: 20px;
 }
-.markdown-body >*:last-child{
-   border-bottom: none;
+.markdown-body > *:last-child {
+  border-bottom: none;
 }
 </style>
 
