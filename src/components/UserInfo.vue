@@ -83,8 +83,7 @@ export default {
         .then(res => {
           if (res.data.success == true) {
             this.isLoading = false;
-            this.userinfo = res.data.data;
-            console.log(this.post);
+            this.userinfo = res.data.data
           }
         })
         .catch(function(err) {

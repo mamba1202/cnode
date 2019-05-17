@@ -79,13 +79,13 @@ export default {
   padding: 6px 20px;
   border-radius: 5px;
   /*box-shadow: 0px 2px 9px #888888;*/
-  border: 1px solid #888888;
+  border: 1px solid #122625;
 }
 
 button {
   background-color: #fff;
   border: 1px solid #ddd;
-  color: #778087;
+  color: #122625;
   border-radius: 3px;
   outline: none;
   height: 21px;
