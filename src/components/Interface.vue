@@ -5,6 +5,17 @@
       <span class="divider">/</span>
       <span class="title">关于</span>
     </div>
+    <div
+      class="top"
+      v-show="isScrollTop"
+      @click="scrollToTop"
+    >
+      <img
+        src="../assets/up.png"
+        alt="图片"
+      >
+      <p>顶部</p>
+    </div>
     <section>
       <div class="api">
         <p>以下 api 路径均以<a
@@ -145,7 +156,56 @@
 </template>
 <script>
 export default {
-  name: "Interface"
+  name: "Interface",
+  data() {
+    return {
+      scrollTop: null,
+      isScrollTop: false
+    };
+  },
+  mounted() {
+    //window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener(
+      "scroll",
+      () => {
+        this.scrollTop =
+          document.documentElement.scrollTop ||
+          window.pageYOffset ||
+          document.body.scrollTop;
+
+        // 控制滚动按钮的隐藏或显示
+        if (this.scrollTop > 300) {
+          this.isScrollTop = true;
+        } else {
+          this.isScrollTop = false;
+        }
+      },
+      true
+    );
+  },
+  methods: {
+    scrollToTop() {
+      let $this = this;
+      // 返回顶部动画特效
+      setTimeout(function animation() {
+        if ($this.scrollTop > 0) {
+          setTimeout(() => {
+            // 步进速度
+            $this.scrollTop = $this.scrollTop - 30;
+            // 返回顶部
+            if (document.documentElement.scrollTop > 0) {
+              document.documentElement.scrollTop = $this.scrollTop - 30;
+            } else if (window.pageYOffset > 0) {
+              window.pageYOffset = $this.scrollTop - 30;
+            } else if (document.body.scrollTop > 0) {
+              document.body.scrollTop = $this.scrollTop - 30;
+            }
+            animation();
+          }, 1);
+        }
+      }, 1);
+    }
+  }
 };
 </script>
 <style scoped>
@@ -193,9 +253,31 @@ export default {
   text-align: start;
   padding: 0 15px;
 }
-.prettyprint{
-background-color: rgb(247, 247, 247);
-padding: 5px;
-color: #080;
+.prettyprint {
+  background-color: rgb(247, 247, 247);
+  padding: 5px;
+  color: #080;
+}
+.top {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgb(9, 147, 172);
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+}
+.top p {
+  text-align: center;
+  line-height: 20px;
+  color: black;
+}
+.top img {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 5px;
+  top: -6px;
+  color: red;
 }
 </style>
