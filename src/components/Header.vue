@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .header{
     background-color: rgb(50, 64, 87);
-    height: 50px;
+    height: 60px;
 }
 img{
     max-width: 120px;
