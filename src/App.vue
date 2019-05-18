@@ -28,4 +28,9 @@ export default {
   width: 80%;
   margin: 0 auto;
 }
+@media (max-width: 979px) {
+  .main {
+    margin: 20px auto;
+  }
+}
 </style>

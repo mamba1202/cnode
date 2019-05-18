@@ -4,6 +4,8 @@ import Article from '../components/Article'
 import PostList from '../components/PostList'
 import UserInfo from '../components/UserInfo'
 import SlideBar from '../components/SlideBar'
+import About from '../components/About'
+import  Interface from '../components/Interface'
 //注意路径
 Vue.use(Router)
 
@@ -21,16 +23,30 @@ export default new Router({
             name: 'post_content',
             path: '/topic/:id&author=:name', //从postlist传过来的id
             components: {
-                main:Article, //指向组件
-                slidebar:SlideBar
+                main: Article, //指向组件
+                slidebar: SlideBar
             }
         },
         {
             name: 'user_info',
-            path:'/userinfo/:name',
-            components:{
+            path: '/userinfo/:name',
+            components: {
                 main: UserInfo  //注意不是字符串
             }
+        },
+        {
+            name: 'about',
+            path: '/about/',
+            components: {
+                main: About
+            }
+        },
+        {
+            name: 'interface',
+            path: '/interface/',
+            components: {
+                main: Interface
         }
+    }
     ]
 })
