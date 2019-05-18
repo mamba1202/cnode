@@ -182,7 +182,7 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background-color: rgb(9, 147, 172);
+  background-color: rgb(32, 160, 255);
   position: fixed;
   bottom: 40px;
   right: 60px;
