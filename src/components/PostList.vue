@@ -11,6 +11,7 @@
         <!--加载动画-->
         <img src="../assets/loading.gif">
       </div>
+      <div v-else>
       <ul>
         <li>
           <div class="toobar">
@@ -37,7 +38,6 @@
           </div>
         </li>
       </ul>
-      <div></div>
       <ul class="articles-lists">
         <li v-for="post in posts">
           <!--:key="post.posts"-->
@@ -85,6 +85,7 @@
           <pagination @handleList="renderList"></pagination>
         </li>
       </ul>
+    </div>
     </div>
   </div>
 </template>
