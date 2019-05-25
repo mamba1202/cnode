@@ -7,17 +7,24 @@
     </div>
     <main>
       <section>
-          <div class="about-v">
+        <div class="about-v">
         <h1>关于 cnode-vue</h1>
-        <p>基于vue和vue-router构建的cnodejs web网站,调用 cnode 社区提供的 API 为接口。</p>
-        <p>
+        <blockquote>
+        <span>基于vue和vue-router构建的cnodejs web网站,调用 cnode 社区提供的 API 为接口。</span>
+        <br>
+        <span>
           以 Vue-cli 创建项目模版，使用 Axios 获取数据，
           使用 Vue Router 进行前端路由的切换及传参，使用 watch 监听路由的
-          变化，Webpack 打包。
-        </p>
+          变化。
+        </span>
+        </blockquote>
         </div>
+        <div class="address">
+        <h2 class="about-v">源码地址</h2>
+        <a href="https://github.com/mamba1202/cnode" target="_blank">https://github.com/mamba1202/cnode</a>
+         </div>
          <div class="about-v">
-        <h3>所用知识</h3>
+        <h2>所用知识</h2>
         <ul>
           <li>Vue2</li>
           <li>Vue Router</li>
@@ -27,7 +34,7 @@
         </ul>
         </div>
          <div class="about-v">
-        <h3>组件</h3>
+        <h2>组件</h2>
         <ul class="details">
           <li><span>PosltList</span> <span>主列表</span></li>
           <li><span>Psgination </span><span>分页组件</span></li>
@@ -40,8 +47,8 @@
       <section>
         <h1>关于我</h1>
         <p>
-          访问
-          <a href="https://github.com/mamba1202/">github</a>
+          访问我的
+          <a href="https://github.com/mamba1202/" target="_blank">github</a>
         </p>
       </section>
     </main>
@@ -58,7 +65,15 @@ export default {
 .about {
   width: 80%;
   background-color: rgb(255, 255, 255);
-  padding: 20px;
+  padding: 30px;
+}
+blockquote{
+  padding: 0 1em;
+  color: #777;
+  border-left: .25em solid #ddd;
+}
+blockquote span{
+  line-height: 2em;
 }
 .details span:first-child{
     display: inline-block;
@@ -68,4 +83,18 @@ export default {
 .about-v{
     border-bottom: 1px solid rgb(224,224,224);
 }
+ul li{
+  color: #777;
+}
+a{
+  padding-bottom: 20px;
+}
+.address h2{
+  padding-bottom: 5px;
+}
+a{
+  padding-bottom: 30px;
+  color:#4078c0;
+  text-decoration: none;
+  }
 </style>

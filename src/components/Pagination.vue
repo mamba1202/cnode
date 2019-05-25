@@ -3,10 +3,11 @@
     <button @click="changeBtn">首页</button>
     <button @click="changeBtn">上一页</button>
     <button v-if="jduge">......</button>
-  <button
+    <button
       v-for="btn in pagebtns"
       @click="changeBtn(btn)"
-      :class="[{currentPage:btn == currentPage},'pagebtn']">
+      :class="[{currentPage:btn == currentPage},'pagebtn']"
+    >
       <!--第一个currentPage是类名，第二个是data中定义的----pagebtn为默认class-->
       {{btn}}
       <!--当前btn==currentPage时class生效-->
@@ -22,7 +23,7 @@ export default {
     return {
       pagebtns: [1, 2, 3, 4, 5, "......"],
       currentPage: 1, //表示当前选中页码
-      jduge: false,
+      jduge: false
     };
   },
   methods: {
@@ -51,10 +52,10 @@ export default {
         return;
       }
       this.currentPage = page; //page传递进来的页码（点击）
-      if(page>4){
-          this.jduge = true
-      }else{
-          this.jduge = false
+      if (page > 4) {
+        this.jduge = true;
+      } else {
+        this.jduge = false;
       }
       if (page == this.pagebtns[4]) {
         this.pagebtns.shift(); //移除第一个元素
@@ -66,7 +67,7 @@ export default {
         //再移除最后一个数字
         this.pagebtns.splice(5, 1);
       }
-      this.$emit('handleList',this.currentPage) //currentPage为点击的页码
+      this.$emit("handleList", this.currentPage); //currentPage为点击的页码
     }
   }
 };
