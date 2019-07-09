@@ -12,80 +12,80 @@
         <img src="../assets/loading.gif">
       </div>
       <div v-else>
-      <ul>
-        <li>
-          <div class="toobar">
-            <span
-              @click="changeTab('')"
-              :class="{active:tabString===''}"
-            >全部</span>
-            <span
-              @click="changeTab('good')"
-              :class="{active:tabString==='good'}"
-            >精华</span>
-            <span
-              @click="changeTab('share')"
-              :class="{active:tabString==='share'}"
-            >分享</span>
-            <span
-              @click="changeTab('ask')"
-              :class="{active:tabString==='ask'}"
-            >问答</span>
-            <span
-              @click="changeTab('job')"
-              :class="{active:tabString==='job'}"
-            >招聘</span>
-          </div>
-        </li>
-      </ul>
-      <ul class="articles-lists">
-        <li v-for="post in posts">
-          <!--:key="post.posts"-->
-          <!--头像-->
-          <img
-            :src="post.author.avatar_url"
-            alt=""
-          >
-          <!--动态绑定-->
-          <!--回复/浏览-->
-          <span class='reply '>
-            <span class="reply_count">{{post.reply_count}}</span>
-            <span>/</span>
-            <span class="count_of_visits">{{post.visit_count}}</span>
-          </span>
-          <!--帖子的分类-->
-          <span
-            class="all"
-            :class="[{put_good:(post.good ==true),put_top:(post.top == true),put_tab:(post.tab == 'ask'),
-           'topiclist-tab':(post.good !=true && post.top !=true &&post.tab != 'ask')}]"
-          >
-            <span>
-              {{post | tabFormatter}}
+        <ul>
+          <li>
+            <div class="toobar">
+              <span
+                @click="changeTab('')"
+                :class="{active:tabString===''}"
+              >全部</span>
+              <span
+                @click="changeTab('good')"
+                :class="{active:tabString==='good'}"
+              >精华</span>
+              <span
+                @click="changeTab('share')"
+                :class="{active:tabString==='share'}"
+              >分享</span>
+              <span
+                @click="changeTab('ask')"
+                :class="{active:tabString==='ask'}"
+              >问答</span>
+              <span
+                @click="changeTab('job')"
+                :class="{active:tabString==='job'}"
+              >招聘</span>
+            </div>
+          </li>
+        </ul>
+        <ul class="articles-lists">
+          <li v-for="post in posts">
+            <!--:key="post.posts"-->
+            <!--头像-->
+            <img
+              :src="post.author.avatar_url"
+              alt=""
+            >
+            <!--动态绑定-->
+            <!--回复/浏览-->
+            <span class='reply '>
+              <span class="reply_count">{{post.reply_count}}</span>
+              <span>/</span>
+              <span class="count_of_visits">{{post.visit_count}}</span>
             </span>
-          </span>
-          <!--标题-->
-          <router-link :to="{
+            <!--帖子的分类-->
+            <span
+              class="all"
+              :class="[{put_good:(post.good ==true),put_top:(post.top == true),put_tab:(post.tab == 'ask'),
+           'topiclist-tab':(post.good !=true && post.top !=true &&post.tab != 'ask')}]"
+            >
+              <span>
+                {{post | tabFormatter}}
+              </span>
+            </span>
+            <!--标题-->
+            <router-link :to="{
             name:'post_content', 
             params:{
               id: post.id,
               name: post.author.loginname
             }}">
-            <span>
-              {{post.title}}
+              <span>
+                {{post.title}}
+                 </span>
+            </router-link>
+           
+            <!--最终回复时间-->
+            <span class="last_reply">
+              {{post.last_reply_at | formatDate}}
             </span>
-          </router-link>
-
-          <!--最终回复时间-->
-          <span class="last_reply">
-            {{post.last_reply_at | formatDate}}
-          </span>
-        </li>
-        <li>
-          <!--分页-->
-          <pagination @handleList="renderList"></pagination>
-        </li>
-      </ul>
-    </div>
+          </li>
+          <li>
+            <!--分页-->
+            <pagination @handleList="renderList"></pagination>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -117,8 +117,8 @@ export default {
           }
         })
         .then(res => {
-          this.isLoading = false, //加载成功之后去除动画
-          this.posts = res.data.data;
+          (this.isLoading = false), //加载成功之后去除动画
+            (this.posts = res.data.data);
         })
         .catch(function(err) {
           //处理返回失败后的问题
@@ -292,17 +292,20 @@ li span {
   border-radius: 3px;
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
-a {
+li a {
   text-decoration: none;
   color: black;
   margin-left: 20px;
   height: 30px;
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
 }
 a:hover {
   text-decoration: underline;
-}
-a span {
-  height: 30px;
 }
 .loading {
   text-align: center;
